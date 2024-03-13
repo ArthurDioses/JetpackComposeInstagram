@@ -1,4 +1,4 @@
-package com.dioses.jetpackcomposeinstagram.login
+package com.dioses.jetpackcomposeinstagram.login.ui
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData

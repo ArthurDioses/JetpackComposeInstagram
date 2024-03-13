@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.dioses.jetpackcomposeinstagram.login.LoginScreen
+import com.dioses.jetpackcomposeinstagram.login.LoginViewModel
 import com.dioses.jetpackcomposeinstagram.ui.theme.JetpackComposeInstagramTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,9 +26,7 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(color = Color(0xFF161D26))
                 ) {
-                    TwitterScreen()
-                    TuitDivider()
-                    TwitterScreen()
+                    LoginScreen(LoginViewModel())
                 }
             }
         }

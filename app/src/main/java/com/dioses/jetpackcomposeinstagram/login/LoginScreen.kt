@@ -1,4 +1,4 @@
-package com.dioses.jetpackcomposeinstagram
+package com.dioses.jetpackcomposeinstagram.login
 
 import android.app.Activity
 import android.util.Patterns
@@ -30,6 +30,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -45,6 +46,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.dioses.jetpackcomposeinstagram.R
 
 /****
  * Project: JetpackComposeInstagram
@@ -53,14 +55,14 @@ import androidx.compose.ui.unit.sp
  * All rights reserved 2024.
  ****/
 @Composable
-fun LoginScreen() {
+fun LoginScreen(loginViewModel: LoginViewModel) {
     Box(
         Modifier
             .fillMaxSize()
             .padding(8.dp)
     ) {
         Header(Modifier.align(Alignment.TopEnd))
-        Body(Modifier.align(Alignment.Center))
+        Body(Modifier.align(Alignment.Center), loginViewModel)
         Footer(Modifier.align(Alignment.BottomCenter))
     }
 }
@@ -95,10 +97,9 @@ fun SignUp() {
 }
 
 @Composable
-fun Body(modifier: Modifier) {
-    var email by rememberSaveable {
-        mutableStateOf("")
-    }
+fun Body(modifier: Modifier, loginViewModel: LoginViewModel) {
+    val email: String by loginViewModel.email.observeAsState(initial = "")
+
     var password by rememberSaveable {
         mutableStateOf("")
     }
@@ -109,8 +110,7 @@ fun Body(modifier: Modifier) {
         ImageLogo(Modifier.align(Alignment.CenterHorizontally))
         Spacer(modifier = Modifier.size(16.dp))
         Email(email) {
-            email = it
-            isLoginEnable = enableLogin(email, password)
+            loginViewModel.onLoginChanged(it)
         }
         Spacer(modifier = Modifier.size(4.dp))
         Password(password) {

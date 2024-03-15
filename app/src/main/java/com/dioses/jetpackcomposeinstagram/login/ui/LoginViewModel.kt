@@ -4,6 +4,7 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dioses.jetpackcomposeinstagram.login.domain.LoginUseCase
 
 /****
  * Project: JetpackComposeInstagram
@@ -13,6 +14,9 @@ import androidx.lifecycle.ViewModel
  ****/
 
 class LoginViewModel : ViewModel() {
+
+    val loginUseCase = LoginUseCase()
+
     private val _email = MutableLiveData<String>()
     val email: LiveData<String> = _email
 

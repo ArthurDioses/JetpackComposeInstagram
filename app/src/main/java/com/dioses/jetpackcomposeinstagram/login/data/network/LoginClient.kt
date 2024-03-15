@@ -1,0 +1,16 @@
+package com.dioses.jetpackcomposeinstagram.login.data.network
+
+import com.dioses.jetpackcomposeinstagram.core.network.response.LoginResponse
+import retrofit2.Response
+import retrofit2.http.GET
+
+/****
+ * Project: JetpackComposeInstagram
+ * From: com.dioses.jetpackcomposeinstagram.login.data
+ * Created by Arthur Dioses Reto on 15/03/24 at 1:37 AM
+ * All rights reserved 2024.
+ ****/
+interface LoginClient {
+    @GET("/v3/f78c9d33-28-b1-4f81-9cf1-6d6ff78fa014")
+    suspend fun doLogin(user: String, password: String): Response<LoginResponse>
+}

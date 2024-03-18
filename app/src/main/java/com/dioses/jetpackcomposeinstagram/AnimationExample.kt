@@ -1,5 +1,6 @@
 package com.dioses.jetpackcomposeinstagram
 
+import android.util.Log
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
@@ -52,7 +53,15 @@ fun SizeAnimation() {
         mutableStateOf(true)
     }
     //val size = if (smallSize) 50.dp else 100.dp
-    val size by animateDpAsState(targetValue = if (smallSize) 50.dp else 100.dp)
+    val size by animateDpAsState(
+        targetValue = if (smallSize) 50.dp else 100.dp,
+        animationSpec = tween(durationMillis = 500), finishedListener = {
+            if (!smallSize) Log.i(
+                "Arthur",
+                "SizeAnimation: finish animation !smallSize"
+            ) else Log.i("Arthur", "SizeAnimation: finish animation smallSize")
+        }
+    )
     Box(
         modifier = Modifier
             .size(size)

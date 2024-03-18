@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(color = Color(0xFF161D26))
                 ) {
-                    ColorAnimationSimple()
+                    SizeAnimation()
                 }
             }
         }

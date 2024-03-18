@@ -1,6 +1,7 @@
 package com.dioses.jetpackcomposeinstagram.login.data
 
 import com.dioses.jetpackcomposeinstagram.login.data.network.LoginService
+import javax.inject.Inject
 
 /****
  * Project: JetpackComposeInstagram
@@ -8,8 +9,7 @@ import com.dioses.jetpackcomposeinstagram.login.data.network.LoginService
  * Created by Arthur Dioses Reto on 15/03/24 at 1:58 AM
  * All rights reserved 2024.
  ****/
-class LoginRepository {
-    private val api = LoginService()
+class LoginRepository @Inject constructor(private val api: LoginService) {
     suspend fun doLogin(user: String, password: String): Boolean {
         return api.doLogin(user, password)
     }
